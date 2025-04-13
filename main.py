@@ -14,14 +14,14 @@ def sign(message, secret):
 def send_order(side):
     url = "https://api.bitget.com/api/v2/mix/order/place-order"
     timestamp = str(int(time.time() * 1000))
-    
+
     body = {
-        "symbol": "ADAUSDT",
-        "marginCoin": "USDT",
+        "symbol": "ORDIUSDT",            # ✅ 這裡改成 ORDIUSDT（Bitget 永續代碼）
+        "marginCoin": "USDT",            # ✅ 用 USDT 作為保證金
         "size": "1",
         "side": "open_long" if side == "LONG" else "open_short",
         "orderType": "market",
-        "productType": "umcbl"
+        "productType": "umcbl"           # ✅ 表示 USDT 本位永續合約
     }
 
     body_json = str(body).replace("'", '"')
@@ -59,4 +59,4 @@ def index():
     return "⚡ Bitget Autobot Ready ⚡"
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=10000)
+    app.run()
